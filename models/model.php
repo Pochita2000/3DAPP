@@ -32,23 +32,19 @@ class Model
         // $this->createTable('Model_3D','Id INTEGER PRIMARY KEY, x3dModelTitle TEXT, x3dCreationMethod TEXT, modelTitle TEXT, modelSubtitle TEXT, modelDescription TEXT');
 
     }
-    public function get_model3D_info()
+    public function getHomePageInfo()
     {
-        // $model_data = file_get_contents("coke.x3d");
-        // return $model_data;
+    // homePage data
         return array(
-            'model1' => 'Coke Can 3D Image 1',
-            'model2' => 'Coke Can 3D Image 2',
-            'model3' => 'Coke Can 3D Image 3',
-            'model4' => 'Coke Can 3D Image 4',
-            'model5' => 'Coke Can 3D Image 5',
-            'model6' => 'Coke Can 3D Image 6',
+            'name'=>'Coco Cola',
+            'intro'=>'Coca-Cola (or Coke for short) is a type of coke produced by the Coca-Cola Company, which was born on 8 May 1886 in Atlanta, Georgia, USA, when pharmacist John Pemberton created a flavoured syrup and brought it to his neighbourhood pharmacy, where he mixed it with soft drinks to create a distinctive soft drink that could be sold over the counter. His partner and accountant, Frank Robinson, named the drink \'Coca-Cola\' and designed the distinctive lettering that is still used today. Coca-Cola is now the market leader in most countries, with 1.9 billion servings sold worldwide each day.
+            <br> --Cited from Wikipedia'
         );
     }
     // find data in db
-    public function find($table, $id)
+    public function find($table)
     {
-        $results = $this->db->query("SELECT * FROM $table WHERE id = $id");
+        $results = $this->db->query("SELECT * FROM $table");
         return $results->fetchArray();
     }
     // delete data in db
@@ -62,9 +58,16 @@ class Model
         $this->db->query("UPDATE $table SET $data WHERE id = $id");
     }
     // insert data in db
-    public function insert($table, $data)
+    public function insert($table, $cols='x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription', $values=null)
     {
-        $result = $this->db->query("INSERT INTO $table SET $data");
+        try {
+                // echo $values;
+            // echo " INSERT INTO $table ($cols) VALUES ($values); ";
+        $result = $this->db->query(" INSERT INTO $table ($cols) VALUES ($values); ");
+    } catch (Exception $e) {
+        echo $e->getMessage();
+        $result= $e->getMessage();
+    }
         return $result;
     }
     // a static function to get the database connection
@@ -86,8 +89,14 @@ class Model
     {
         try {
             $this->db->query("CREATE TABLE $table ($data)");
-        } catch(PDOException $e){};
-    }
+            $this->insert('Model_3D','x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription','"Coke Can 3D Image 1","Coke Can 3D Image 1", "Coke Can 3D Image 1", "Coke Can 3D Image 1", "Coke Can 3D Image 1"');
+            $this->insert('Model_3D','x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription','"Coke Can 3D Image 1","Coke Can 3D Image 1", "Coke Can 3D Image 1", "Coke Can 3D Image 1", "Coke Can 3D Image 1"');
+            $this->insert('Model_3D','x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription', '"Coke Can 3D Image 1","Coke Can 3D Image 1", "Coke Can 3D Image 1", "Coke Can 3D Image 1", "Coke Can 3D Image 1"');
+                   } catch(PDOException $e){};
+                //    $values='"Coke Can 3D Image 1","Coke Can 3D Image 1", "Coke Can 3D Image 1", "Coke Can 3D Image 1", "Coke Can 3D Image 1"';
+                  
+                }
+
     public function dbGetData()
     {
         try {
@@ -116,17 +125,15 @@ class Model
         } catch (PD0EXception $e) {
             print new Exception($e->getMessage());
         }
+        
         // Close the database connection
-        $this->db = NULL;
+        // $this->db = NULL;
         // Send the response back to the view
         return $result;
     }
     public function initModel()
     {
+        // echo '1111';
         $this->createTable('Model_3D','Id INTEGER PRIMARY KEY, x3dModelTitle TEXT, x3dCreationMethod TEXT, modelTitle TEXT, modelSubtitle TEXT, modelDescription TEXT');
-        $this->insert('Model_3D', 'x3dModelTitle="Coke Can 3D Image 1", x3dCreationMethod="Coke Can 3D Image 1", modelTitle="Coke Can 3D Image 1", modelSubtitle="Coke Can 3D Image 1", modelDescription="Coke Can 3D Image 1"');
-        $this->insert('Model_3D', 'x3dModelTitle="Coke Can 3D Image 1", x3dCreationMethod="Coke Can 3D Image 1", modelTitle="Coke Can 3D Image 1", modelSubtitle="Coke Can 3D Image 1", modelDescription="Coke Can 3D Image 1"');
-        $this->insert('Model_3D', 'x3dModelTitle="Coke Can 3D Image 1", x3dCreationMethod="Coke Can 3D Image 1", modelTitle="Coke Can 3D Image 1", modelSubtitle="Coke Can 3D Image 1", modelDescription="Coke Can 3D Image 1"');
-
     }   
 }

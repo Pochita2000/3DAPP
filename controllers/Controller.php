@@ -12,12 +12,11 @@ class Controller
     }
     function home()
     {
-        $data = $this->model->get_model3D_info();
         try {
             $this->model->initModel();
         } catch (Exception $e) {
         };
-        $this->load->view('homePage', $data);
+        $this->load->view('homePage');
     }
     function apiCreateTable()
     {
@@ -40,7 +39,7 @@ class Controller
     }
     function homePageJSONapi()
     {
-        return 'test';
+        echo json_encode(array($this->model->getHomePageInfo(),$this->model->dbGetData()));
         // return json_encode($this->model->get_model3D_info());
     }
 }
