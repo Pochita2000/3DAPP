@@ -1,8 +1,0 @@
-<?php
-  $db = new SQLite3("data.db");
-  $results = $db->query("SELECT * FROM mytable");
-  while ($row = $results->fetchArray()) {
-    echo $row["column1"] . " - " . $row["column2"] . "<br>";
-  }
-  $db->close();
-?>

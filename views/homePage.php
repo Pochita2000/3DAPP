@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html>
 
@@ -13,8 +16,8 @@
 	<script src="https://www.x3dom.org/download/x3dom.js"></script>
 	<link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css">
 	<!-- 引入自定义css和js -->
-	<link rel="stylesheet" href="css/slider.css">
-	<script src="js\slider.js"></script>
+	<link rel="stylesheet" href="views/css/slider.css">
+	<script src="views/js/slider.js"></script>
 </head>
 
 <body>
