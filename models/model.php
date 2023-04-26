@@ -26,7 +26,7 @@ class Model{
     private $db;
     // init Model and db
     function __construct(){
-        // $this->init_databse();
+        $this->init_databse();
     }
     public function get_model3D_info(){
         // $model_data = file_get_contents("coke.x3d");
@@ -59,6 +59,7 @@ class Model{
     }
     // a static function to get the database connection
     private function init_databse(){
+        // echo "init database";
         $this->db = new SQLite3("data.db");
         // $results = $this->db->query("SELECT * FROM mytable");
         // while ($row = $results->fetchArray()) {

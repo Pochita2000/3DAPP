@@ -17,10 +17,26 @@
 	<link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css">
 	<!-- 引入自定义css和js -->
 	<link rel="stylesheet" href="views/css/slider.css">
+	<link rel="stylesheet" href="views/css/header.css">
 	<script src="views/js/slider.js"></script>
 </head>
 
 <body>
+<header class="site-header sticky-top py-1">
+  <nav class="container d-flex flex-column flex-md-row justify-content-between">
+    <a class="py-2" href="#" aria-label="Product">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Coca-Cola_logo.svg" width="48" height="24" fill=" #ff0000"></img>
+    </a>
+    <a class="py-2 d-none d-md-inline-block" href="#">Tour</a>
+    <a class="py-2 d-none d-md-inline-block" href="#">Product</a>
+    <a class="py-2 d-none d-md-inline-block" href="#">Features</a>
+    <a class="py-2 d-none d-md-inline-block" href="#">Enterprise</a>
+    <a class="py-2 d-none d-md-inline-block" href="#">Support</a>
+    <a class="py-2 d-none d-md-inline-block" href="#">Pricing</a>
+    <a class="py-2 d-none d-md-inline-block" href="#">Cart</a>
+  </nav>
+</header>
+
 	<!-- <nav class="navbar navbar-inverse">
 		<div class="container">
 			<div class="navbar-header">
@@ -48,9 +64,9 @@
 		<div id="wholepage">
 		<section>
 				<div class="px-4 py-5 my-5 text-center">
-					<img class="d-block mx-auto mb-4"
+					<!-- <img class="d-block mx-auto mb-4"
 						src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Coca-Cola_logo.svg" alt="" width="288"
-						height="228">
+						height="228"> -->
 					<h1 class="display-5 fw-bold text-body-emphasis">Coco Cola</h1>
 					<div class="col-lg-6 mx-auto">
 						<p class="lead mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap,
@@ -91,9 +107,14 @@
 		</div>
 
 		<script>
-    new WholePageSlider({
-        colors: ['white','deepskyblue', 'orange',  'lightgrey']
-    })
+    // new WholePageSlider({
+    //     colors: ['white','deepskyblue', 'orange',  'lightgrey']
+    // })
+	new WholePageSlider({
+		backgrounds:[
+			'assets/bkg.jpg'
+		]
+	})
 </script>
 </body>
 
