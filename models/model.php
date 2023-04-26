@@ -87,16 +87,9 @@ class Model
     //create Table
     public function createTable($table, $data)
     {
-        try {
-            $this->db->query("CREATE TABLE $table ($data)");
-            $this->insert('Model_3D','x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription','"Coke Can 3D Image 1","Coke Can 3D Image 1", "Coke Can 3D Image 1", "Coke Can 3D Image 1", "Coke Can 3D Image 1"');
-            $this->insert('Model_3D','x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription','"Coke Can 3D Image 1","Coke Can 3D Image 1", "Coke Can 3D Image 1", "Coke Can 3D Image 1", "Coke Can 3D Image 1"');
-            $this->insert('Model_3D','x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription', '"Coke Can 3D Image 1","Coke Can 3D Image 1", "Coke Can 3D Image 1", "Coke Can 3D Image 1", "Coke Can 3D Image 1"');
-                   } catch(PDOException $e){};
-                //    $values='"Coke Can 3D Image 1","Coke Can 3D Image 1", "Coke Can 3D Image 1", "Coke Can 3D Image 1", "Coke Can 3D Image 1"';
-                  
-                }
 
+            $this->db->query("CREATE TABLE $table ($data)");
+    }
     public function dbGetData()
     {
         try {
@@ -134,6 +127,16 @@ class Model
     public function initModel()
     {
         // echo '1111';
-        $this->createTable('Model_3D','Id INTEGER PRIMARY KEY, x3dModelTitle TEXT, x3dCreationMethod TEXT, modelTitle TEXT, modelSubtitle TEXT, modelDescription TEXT');
+        try{
+            // need to be designed futher 
+            $this->createTable('Model_3D','ModelId INTEGER PRIMARY KEY AUTOINCREMENT, x3dModelTitle TEXT, x3dCreationMethod TEXT, modelTitle TEXT, modelSubtitle TEXT, modelDescription TEXT');
+            $this->createTable('Model_info','InfoId INTEGER PRIMARY KEY AUTOINCREMENT, ModelId INTEGER NOT NULL REFERENCES Model_3D(ModelID)');
+            $this->insert('Model_3D','x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription','"Coke Can 3D Image 1","Coke Can 3D Image 1", "Coke Can 3D Image 1", "Coke Can 3D Image 1", "Coke Can 3D Image 1"');
+            $modelID=$this->db->lastInsertId();
+            $this->insert('Model_3D','x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription','"Coke Can 3D Image 1","Coke Can 3D Image 1", "Coke Can 3D Image 1", "Coke Can 3D Image 1", "Coke Can 3D Image 1"');
+            $this->insert('Model_3D','x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription', '"Coke Can 3D Image 1","Coke Can 3D Image 1", "Coke Can 3D Image 1", "Coke Can 3D Image 1", "Coke Can 3D Image 1"');
+
+        }catch{};
+        
     }   
 }

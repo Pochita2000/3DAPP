@@ -57,33 +57,7 @@
 
 		<!-- add a loop to show all brands -->
 
-		<section>
-			<div class="page">
 
-				<h1>Oh! You scrolled - nice!</h1>
-				<p>you can try even lower..</p>
-			</div>
-
-
-		</section>
-
-		<section>
-			<div class="page">
-				<h1>You can have as many pages as you want!</h1>
-				<p>Nice huh? Try navigation buttons on the left and at the bottom</p>
-			</div>
-
-		</section>
-
-		</section>
-
-		<section>
-			<div class="page">
-				<h1>You can have as many pages as you want!</h1>
-				<p>Nice huh? Try navigation buttons on the left and at the bottom</p>
-			</div>
-
-		</section>
 
 	</div>
 
@@ -102,7 +76,14 @@
 					pageIntro = data[0];
 					$('#pageintro').eq(0).find('h1').text(pageIntro.name);
 					$('#pageintro').eq(0).find('p').text(pageIntro.intro);
-					models = data[1]
+					var models = data[1];
+					// walk through the models
+					models.forEach(element => {
+						var newElement = $("<section><div class='page'><h1>You can have as many pages as you want!</h1><p>Nice huh? Try navigation buttons on the left and at the bottom</p></div></section>");
+						$('#pageintro').after(
+							newElement
+						)
+					});
 					console.log(models)
 				},
 				error: function(xhr, status, error) {
