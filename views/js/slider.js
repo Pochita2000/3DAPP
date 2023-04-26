@@ -62,6 +62,7 @@ const WholePageSlider = class {
       if (this.options.backgrounds) { 
         this.sections[index].style.backgroundImage = this.options.backgrounds[index] ? `url(${this.options.backgrounds[index]})` : 'none';
         this.sections[index].style.backgroundSize = 'cover';
+        this.sections[index].style.backgroundPosition='top center';
       }
       // We need to be sure that there is more then 1 section before creating navigation
       if (this.sections.length > 1) {
