@@ -33,11 +33,41 @@
 
 <body>
 	<header class="site-header sticky-top py-1">
-		<nav class="container d-flex flex-column flex-md-row justify-content-between">
-			<a class="py-2" href="#" aria-label="Product">
-				<img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Coca-Cola_logo.svg" width="48" height="24" fill=" #ff0000"></img>
-			</a>
-			<a class="py-2 d-none d-md-inline-block" href="#">Models</a>
+
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Eighth navbar example">
+			<div class="container">
+				<a class="py-2" href="#" aria-label="Product">
+					<img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Coca-Cola_logo.svg" width="48" height="24" fill=" #ff0000"></img>
+				</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarsExample07">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href="#">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Link</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link disabled">Disabled</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="#">Action</a></li>
+								<li><a class="dropdown-item" href="#">Another action</a></li>
+								<li><a class="dropdown-item" href="#">Something else here</a></li>
+							</ul>
+						</li>
+					</ul>
+					<!-- <form role="search">
+						<input class="form-control" type="search" placeholder="Search" aria-label="Search">
+					</form> -->
+				</div>
+			</div>
 		</nav>
 	</header>
 	<div id="wholepage">
@@ -54,10 +84,22 @@
 				</div>
 			</div>
 		</section>
+		<!-- <section>
+			<div class="page">
+				<div class="card">
+					<div class="card-header">
+						Featured
+					</div>
+					<div class="card-body">
+						<h5 class="card-title">Special title treatment</h5>
+						<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+						<a href="#" class="btn btn-primary">Go somewhere</a>
+					</div>
+				</div>
+		</section> -->
 
-		<!-- add a loop to show all brands -->
-
-
+	</div>
+	<!-- add a loop to show all brands -->
 
 	</div>
 
@@ -65,13 +107,32 @@
 		// new WholePageSlider({
 		//     colors: ['white','deepskyblue', 'orange',  'lightgrey']
 		// })
+		function addSectionTemplate(title, background, intro, modelID) {
+			return "<section>\
+				<div class=\"page\" style=\"background-image:url('" + background + "');background-size:cover;\">\
+					<div class=\"card position-relative\" style=\"width:50%\">\
+					<div class=\"card-header\"><h1>" +
+				title +
+				"</h1></div>\
+					<div class=\"card-body\">\
+						<p class=\"card-text\">" + intro + "</p>\
+						<a onclick=\"showModel(" + modelID + ")\" class=\"btn btn-primary position-relative bottom-0 start-50 translate-middle-x\">Show Model Right Now!</a>\
+					</div>\
+				</div>\
+		</section>\
+		"
+		}
+
+		function showModel(modelID) {
+			console.log('clicked');
+		}
 		$(document).ready(function() {
 			// console.log( "ready!" );
 			$.ajax({
 				url: 'http://localhost:3000/due4-30/index.php/homePageJSONapi',
 				method: 'GET',
 				success: function(response) {
-					// console.log(response);
+					console.log(response);
 					var data = JSON.parse(response);
 					pageIntro = data[0];
 					$('#pageintro').eq(0).find('h1').text(pageIntro.name);
@@ -79,11 +140,12 @@
 					var models = data[1];
 					// walk through the models
 					models.forEach(element => {
-						var newElement = $("<section><div class='page'><h1>You can have as many pages as you want!</h1><p>Nice huh? Try navigation buttons on the left and at the bottom</p></div></section>");
+						var newElement = $(addSectionTemplate(element.Title, element.Background, element.Intro, element.ModelId));
 						$('#pageintro').after(
 							newElement
 						)
 					});
+					new WholePageSlider({})
 					console.log(models)
 				},
 				error: function(xhr, status, error) {
@@ -96,7 +158,6 @@
 		// 		'assets/bkg1.jpg',
 		// 		'assets/bkg2.jpg'
 		// 	]
-		new WholePageSlider({})
 	</script>
 </body>
 
