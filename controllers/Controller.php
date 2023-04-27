@@ -4,11 +4,11 @@ class Controller
     public $load;
     public $model;
 
-    function __construct($pageURI = null)
+    function __construct($pageURI = null,$param=null)
     {
         $this->load = new Load();
         $this->model = new Model();
-        $this->$pageURI();
+        $this->$pageURI($param);
     }
     function home()
     {
@@ -41,5 +41,9 @@ class Controller
     {   
         echo json_encode(array($this->model->getHomePageInfo(),$this->model->dbModelInfo()));
         // return json_encode($this->model->get_model3D_info());
+    }
+    function showModel($modelID)
+    {
+        $this->load->view('x3dViewer',$modelID);
     }
 }
