@@ -38,8 +38,8 @@ class Controller
         $this->load->view('homePage');
     }
     function homePageJSONapi()
-    {
-        echo json_encode(array($this->model->getHomePageInfo(),$this->model->dbGetData()));
+    {   
+        echo json_encode(array($this->model->getHomePageInfo(),$this->model->dbModelInfo()));
         // return json_encode($this->model->get_model3D_info());
     }
 }
