@@ -13,10 +13,10 @@
 	<script src="https://www.x3dom.org/download/x3dom.js"></script>
 	<link rel="stylesheet" href="https://www.x3dom.org/download/x3dom.css">
 	<!-- 引入自定义css和js -->
-	<link rel="stylesheet" href="views/css/slider.css">
-	<link rel="stylesheet" href="views/css/header.css">
+	<link rel="stylesheet" href="http://localhost:2000/views/css/slider.css">
+	<link rel="stylesheet" href="http://localhost:2000/views/css/header.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-	<script src="views/js/slider.js"></script>
+	<script src="http://localhost:2000/views/js/slider.js"></script>
 	<style>
 		section::before {
 			content: "";
@@ -37,7 +37,7 @@
 include 'views/components/Header.php'
 ?>
 	<div id="wholepage">
-		<section id="pageintro" style="background-image:url('assets/bkg_homepage.jpg');background-size:cover;">
+		<section id="pageintro" style="background-image:url('http://localhost:2000/assets/bkg_homepage.jpg');background-size:cover;">
 			<div class="page">
 				<div class="px-4 py-5 my-5 text-center">
 					<!-- <img class="d-block mx-auto mb-4"
@@ -74,7 +74,7 @@ include 'views/components/Header.php'
 		// })
 		function addSectionTemplate(title, background, intro, modelID) {
 			return "<section>\
-				<div class=\"page\" style=\"background-image:url('" + background + "');background-size:cover;\">\
+				<div class=\"page\" style=\"background-image:url('http://localhost:2000/" + background + "');background-size:cover;\">\
 					<div class=\"card position-relative\" style=\"width:50%\">\
 					<div class=\"card-header\"><h1>" +
 				title +
