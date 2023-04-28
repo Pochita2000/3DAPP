@@ -46,4 +46,13 @@ class Controller
     {
         $this->load->view('x3dViewer',$modelID);
     }
+    function getModelInfo()
+    {
+        $modelID= $_POST["modelID"];
+//        echo $modelID;
+//        echo '111';
+        $result=$this->model->dbModelInfoByID($modelID);
+//        print $result;
+        echo json_encode($result);
+    }
 }

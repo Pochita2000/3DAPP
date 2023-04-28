@@ -47,6 +47,11 @@ class Model
         $results = $this->db->query("SELECT * FROM $table");
         return $results->fetchArray();
     }
+    public function find_byID($table,$id)
+    {
+        $results = $this->db->query("SELECT * FROM $table WHERE  ModelId= $id" );
+        return $results;
+    }
     // delete data in db
     public function delete($table, $id)
     {
@@ -160,6 +165,42 @@ class Model
         // Close the database connection
         // $this->db = NULL;
         // Send the response back to the view
+        return $result;
+    }
+    public function dbModelInfoByID($modelID)
+    {
+        try {
+            // Prepare a statement to get all records from the Model_3D table
+            $sql = 'SELECT * FROM Model_3D WHERE ModelId='.$modelID;
+            // Use PDO query() to query the database with the prepared SQL statement
+            $stmt = $this->db->query($sql);
+//            print $stmt;
+            // Set up an array to return the results to the view
+            $result = null;
+            // Set up a variable to index each row of the array
+            $i = -0;
+            // Use PDO fetch() to retrieve the results from the database using a while loop
+            // Use a while loop to loop through the rows
+            while ($data = $stmt->fetch()) {
+                // Don't worry about this, it's just a simple test to check we can output a value from the database in a while loop
+                // echo '</br>' . $data['x3dModelTitle'];
+                // Write the database conetnts to the results array for sending back to the view
+                $result[$i]['x3dModelTitle'] = $data['x3dModelTitle'];
+                $result[$i]['x3dPath'] = $data['x3dPath'];
+                $result[$i]['modelTitle'] = $data['modelTitle'];
+                $result[$i]['modelSubtitle'] = $data['modelSubtitle'];
+                $result[$i]['modelDescription'] = $data['modelDescription'];
+                //increment the row index
+                $i++;
+            }
+        } catch (PD0EXception $e) {
+            print new Exception($e->getMessage());
+        }
+
+        // Close the database connection
+        // $this->db = NULL;
+        // Send the response back to the view
+
         return $result;
     }
     public function initModel()

@@ -1,11 +1,13 @@
 <?php
 
-// includes 
+// includes
+//ini_set("include_path",".:/home/david/develop/77/3Dapp");
 require_once 'views/load.php';
 require_once 'models/model.php';
-require_once 'controllers/controller.php';
+require_once 'controllers/Controller.php';
 $pageURI =$_SERVER['REQUEST_URI'];
 $pageURI =substr($pageURI,strrpos($pageURI,'index.php')+10);
+//$modelID= $_POST["modelID"];
 if (strpos($pageURI,'?') == false) {
 	if (!$pageURI)
 		new Controller('home');

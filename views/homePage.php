@@ -34,7 +34,7 @@
 
 <body>
 <?php
-include 'views\components\Header.php'
+include 'views/components/Header.php'
 ?>
 	<div id="wholepage">
 		<section id="pageintro" style="background-image:url('assets/bkg_homepage.jpg');background-size:cover;">
@@ -99,14 +99,14 @@ include 'views\components\Header.php'
 			// 		console.log(error);
 			// 	}
 			// })
-			window.location.href ='http://localhost:3000/due4-30/index.php/showModel?modelID='+String(modelID)
+			window.location.href ='http://localhost:2000/index.php/showModel?modelID='+String(modelID)
 			console.log('clicked');
 		}
 		
 		$(document).ready(function() {
 			// console.log( "ready!" );
 			$.ajax({
-				url: 'http://localhost:3000/due4-30/index.php/homePageJSONapi',
+				url: 'http://localhost:2000/index.php/homePageJSONapi',
 				method: 'GET',
 				success: function(response) {
 					console.log(response);
